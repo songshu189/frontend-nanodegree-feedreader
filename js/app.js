@@ -41,6 +41,11 @@ function init() {
  * which will be called after everything has run successfully.
  */
  function loadFeed(id, cb) {
+    /* Do not load feed when index is out of Allfeeds' boundary
+     */
+    if(id<0) return;
+    if(id>=allFeeds.length) return;
+
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
 

@@ -70,9 +70,9 @@ $(function() {
           */
           it('displays when the menu-icon is clicked and is hidden when clicked again', function() {
             var menuIcon = $('.menu-icon-link');
-            menuIcon.click();
+            menuIcon.trigger('click');
             expect(document.body.getAttribute('class')).not.toMatch('menu-hidden');
-            menuIcon.click();
+            menuIcon.trigger('click');
             expect(document.body.getAttribute('class')).toMatch('menu-hidden');
           });
     });
@@ -97,6 +97,8 @@ $(function() {
             expect(container.find('.entry').length).toBeGreaterThan(0);
             done();
         });
+
+
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
@@ -123,4 +125,17 @@ $(function() {
             done();
         });
     });
+
+    /* Write a new test suite named "Out-of-bound-array access" */
+    describe('Out-of-bound array access', function() {
+        /* Write a test that ensures when calling loadFeed with out
+         * of bound index, there is no exception throw.
+         */
+
+        it('should not throw error', function() {
+            expect(function(){loadFeed(-1)}).not.toThrow();
+            expect(function(){loadFeed(4)}).not.toThrowError(TypeError);
+        });
+    });
+
 }());
